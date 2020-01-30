@@ -1,3 +1,4 @@
+require_relative 'journey'
 class Oystercard
   attr_reader :balance, :entry_station, :journey_history, :exit_station
   Limit = 90
@@ -27,7 +28,8 @@ class Oystercard
 
   def touch_out(station)
     @exit_station = station
-    @journey_history.push({:entry_station => entry_station, :exit_station => exit_station}) #problem with pushing name of entry station into hash
+    #@journey_history.push({:entry_station => entry_station, :exit_station => exit_station}) #problem with pushing name of entry station into hash
+    @journey_history.push(Journey.new(@entry_station, @exit_station)) #problem with pushing name of entry station into hash
     deduct(Minimum_fare)
     @entry_station = nil
     puts station
