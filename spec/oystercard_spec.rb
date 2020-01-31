@@ -47,7 +47,10 @@ describe Oystercard do
     it 'should deduct the Minimum_fare from balance' do
       expect{subject.touch_out(exit_station) }.to change{ subject.balance }.by -(Oystercard::Minimum_fare)
     end
+    it 'should create a new journey' do
+
   end
+
   describe '#journey_history' do
     it 'Return an empty list for history_journey' do
       expect(subject.journey_history).to eq ([])
@@ -58,12 +61,12 @@ describe Oystercard do
       expect{ subject.touch_out(exit_station) }.to change{ subject.journey_history.count }.by 1
     end
 
-    it 'should include entry and exit stations' do
-      subject.touch_in(entry_station)
-      subject.touch_out(exit_station)
-      expect(subject.journey_history).to include(:entry_station => entry_station, :exit_station => exit_station)
-    end
+    # it 'should include entry and exit stations' do
+    #   subject.touch_in(entry_station)
+    #   subject.touch_out(exit_station)
+    #   expect(subject.journey_history).to include(:entry_station => entry_station, :exit_station => exit_station)
+    # end
 
   end
-
+end
 end
